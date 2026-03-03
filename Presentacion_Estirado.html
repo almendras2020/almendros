@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Corporativa - ESTIRADO.C.B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-green-dark: #1b4332; 
+            --brand-green-vibrant: #40916c;
+            --accent-gold: #b79455;
+            --bg-neutral: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #212529;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: var(--white);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin: 0 auto;
+        }
+
+        .logo-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            padding: 0 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .logo-badge {
+            background-color: var(--white);
+            border: 4px solid var(--brand-green-dark);
+            padding: 15px 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 0 0 12px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: auto;
+        }
+
+        .logo-badge span {
+            color: var(--brand-green-dark);
+            font-weight: 800;
+            font-size: 26px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo-badge .sub-tag {
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-top: 5px;
+            font-weight: 600;
+            color: var(--brand-green-vibrant);
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 54px;
+            color: var(--brand-green-dark);
+            margin: 40px 0 20px 0;
+            padding-left: 25px;
+            border-left: 10px solid var(--brand-green-vibrant);
+            line-height: 1;
+        }
+
+        .content-area {
+            padding: 0 60px 40px 60px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        p, li { font-size: 21px; line-height: 1.6; color: var(--text-dark); }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr; /* Damos más espacio a la imagen */
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Resaltado de imágenes */
+        .image-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 480px; /* Aumentado de 400px */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 8px solid var(--white);
+            outline: 1px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .full-bg { 
+            background-size: cover;
+            background-position: center;
+            position: relative; 
+            padding: 0 !important; 
+            background-color: var(--brand-green-dark);
+        }
+
+        /* Resaltado de texto sobre imagen */
+        .overlay-content { 
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); 
+            width: 100%; height: 100%; padding: 80px; 
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+        }
+        
+        .overlay-content h1 {
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+        }
+        
+        .overlay-content p {
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            background: rgba(27, 67, 50, 0.4);
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        th { background: var(--brand-green-dark); color: white; padding: 25px; text-align: left; font-size: 22px; }
+        td { padding: 20px; border-bottom: 1px solid #eee; font-size: 20px; }
+        tr.highlight-row { background-color: #f1f8f4; font-weight: 700; border-left: 12px solid var(--brand-green-vibrant); }
+
+        .bar-chart { margin-top: 20px; }
+        .bar-item { margin-bottom: 25px; }
+        .bar-label { font-weight: 700; margin-bottom: 8px; color: var(--brand-green-dark); font-size: 20px; }
+        .bar-track { height: 45px; background: #eee; border-radius: 25px; overflow: hidden; position: relative; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--brand-green-dark), var(--brand-green-vibrant)); transition: width 1s ease-in-out; }
+        .bar-value { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: white; font-weight: 800; font-size: 22px; }
+    </style>
+</head>
+<body>
+
+    <!-- DIAPOSITIVA 1: PORTADA (FONDO RESALTADO) -->
+    <div class="slide-container full-bg" id="slide1" style="background-image: url('portada.jpg');">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="overlay-content">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 96px; margin: 0; line-height: 0.9; color: white;">Almendros con<br>Alma Extremeña</h1>
+            <div style="width: 120px; height: 8px; background: var(--accent-gold); margin: 35px 0; box-shadow: 0 0 15px rgba(183,148,85,0.5);"></div>
+            <p style="font-size: 30px; font-weight: 600; letter-spacing: 3px; color: white;">PRODUCCIÓN PROPIA · CALIDAD GARANTIZADA</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 2: SOSTENIBILIDAD (IMAGEN GRANDE) -->
+    <div class="slide-container" id="slide2">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area">
+            <h2 class="slide-title">Sostenibilidad y Riego</h2>
+            <div class="two-column">
+                <div>
+                    <p>Invertimos en el futuro de nuestras tierras mediante infraestructuras de vanguardia:</p>
+                    <ul style="margin-top: 25px; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-sun" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i><strong>Energía Solar:</strong> Bombeo sostenible.</li>
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-droplet" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i><strong>Gestión Hídrica:</strong> Balsas propias.</li>
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-leaf" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i><strong>Eficiencia:</strong> Respeto al entorno.</li>
+                    </ul>
+                    <div style="margin-top: 40px; padding: 30px; background: var(--bg-neutral); border-radius: 15px; border-left: 8px solid var(--brand-green-dark); box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <p style="font-style: italic; margin: 0; font-size: 18px;">"Tecnología limpia para un producto natural y puro."</p>
+                    </div>
+                </div>
+                <div class="image-frame">
+                    <img src="balsa.jpg" alt="Balsa de riego y placas solares">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 3: VARIEDAD LAURANNE (IMAGEN IZQUIERDA GRANDE) -->
+    <div class="slide-container" id="slide3">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area">
+            <h2 class="slide-title">Variedad Lauranne (Avijor)</h2>
+            <div class="two-column" style="grid-template-columns: 1.2fr 0.8fr;">
+                <div class="image-frame">
+                    <img src="flor.jpg" alt="Flor de almendro Estirado C.B">
+                </div>
+                <div>
+                    <h3>Floración Tardía</h3>
+                    <p>Nuestra elección estratégica asegura la cosecha cada año:</p>
+                    <div style="margin-top: 30px;">
+                        <div style="display: flex; align-items: center; gap: 20px; background: #f1f8f4; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <i class="fa-solid fa-snowflake" style="font-size: 30px; color: var(--brand-green-vibrant);"></i>
+                            <span><b>Seguridad:</b> Resistente a heladas tardías.</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; background: #f1f8f4; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <i class="fa-solid fa-award" style="font-size: 30px; color: var(--brand-green-vibrant);"></i>
+                            <span><b>Calidad:</b> Grano dulce de gran calibre.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 4: PANORÁMICA (IMAGEN IMPACTANTE) -->
+    <div class="slide-container" id="slide4">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area">
+            <h2 class="slide-title">Nuestras Tierras</h2>
+            <div class="two-column">
+                <div>
+                    <p>Gestionamos explotaciones modernas con una visión de excelencia técnica:</p>
+                    <ul style="margin-top: 25px; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-check-circle" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i> Control integral del cultivo.</li>
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-check-circle" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i> Marco de plantación optimizado.</li>
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-check-circle" style="color: var(--brand-green-vibrant); margin-right: 15px;"></i> Poda especializada por expertos.</li>
+                    </ul>
+                </div>
+                <div class="image-frame">
+                    <img src="campo.jpg" alt="Panorámica de los campos de Estirado C.B">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 5: TABLA (RESALTADO) -->
+    <div class="slide-container" id="slide5">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area">
+            <h2 class="slide-title">Potencial Regional</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Región</th>
+                        <th>Superficie (Ha)</th>
+                        <th>Variedad Principal</th>
+                        <th>Tendencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Andalucía</td>
+                        <td>212.000</td>
+                        <td>Marcona / Guara</td>
+                        <td>Estable</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Extremadura</td>
+                        <td>68.500</td>
+                        <td>Lauranne</td>
+                        <td>Líder en Crecimiento</td>
+                    </tr>
+                    <tr>
+                        <td>C. La Mancha</td>
+                        <td>145.000</td>
+                        <td>Lauranne</td>
+                        <td>Consolidación</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 30px; font-weight: 700; color: var(--brand-green-dark); text-align: center; font-size: 24px;">Extremadura: El nuevo epicentro del Almendro de calidad.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 6: RENDIMIENTO (BARRAS GRANDES) -->
+    <div class="slide-container" id="slide7">
+        <div class="logo-header">
+            <div class="logo-badge">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area">
+            <h2 class="slide-title">Rendimiento Industrial</h2>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">Lauranne (Estirado C.B)</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 38%;"></div><span class="bar-value">38%</span></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Variedad Guara</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 34%;"></div><span class="bar-value">34%</span></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Variedad Marcona</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 27%;"></div><span class="bar-value">27%</span></div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-weight: 600; color: var(--brand-green-vibrant); font-size: 22px;">Optimizamos cada árbol para el máximo rendimiento en pepita.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 7: CONTACTO FINAL -->
+    <div class="slide-container" id="slide8" style="background-color: #f1f8f4;">
+        <div class="logo-header">
+            <div class="logo-badge" style="border-width: 6px; padding: 25px 40px;">
+                <span>ESTIRADO.C.B</span>
+                <div class="sub-tag" style="font-size: 14px; letter-spacing: 6px;">EXTREMADURA</div>
+            </div>
+        </div>
+        <div class="content-area" style="justify-content: center; align-items: center; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 72px; margin-bottom: 20px; color: var(--brand-green-dark);">Comprometidos con la Excelencia</h2>
+            <div style="background: white; padding: 50px 80px; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-bottom: 12px solid var(--brand-green-dark);">
+                <p style="font-size: 42px; font-weight: 800; color: var(--brand-green-dark); margin-bottom: 15px; letter-spacing: 2px;">ESTIRADO.C.B</p>
+                <p style="font-size: 28px; font-weight: 600; color: var(--brand-green-vibrant);"><i class="fa-solid fa-envelope" style="margin-right: 15px;"></i> estiradocb@gmail.com</p>
+                <div style="margin-top: 30px; width: 60px; height: 4px; background: #eee; margin-inline: auto;"></div>
+                <p style="font-size: 16px; color: #999; text-transform: uppercase; letter-spacing: 5px; margin-top: 25px;">Extremadura · España</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].style.display = 'flex';
+        }
+
+        slides.forEach((slide, index) => {
+            if (index !== 0) slide.style.display = 'none';
+        });
+
+        // Cambio automático cada 5.5 segundos para dar tiempo a apreciar las imágenes grandes
+        setInterval(nextSlide, 5500);
+    </script>
+</body>
+</html>
